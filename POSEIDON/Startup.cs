@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using POSEIDON.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +27,12 @@ namespace POSEIDON
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-
       services.AddControllers();
+
+      //Uso la base de datos SQL SERVER Poseidon
+      services.AddDbContext<PoseidonContext>(options =>
+         options.UseSqlServer(Configuration.GetConnectionString
+              ("SQLServerConnection")));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
