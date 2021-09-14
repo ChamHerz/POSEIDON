@@ -12,6 +12,7 @@ using POSEIDON.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace POSEIDON
@@ -27,7 +28,11 @@ namespace POSEIDON
 
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddControllers();
+      services.AddControllers().AddJsonOptions(opt =>
+      {
+        //Para convertir el String del request en Integner (Enum)
+        opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+      });
 
       //Uso la base de datos SQL SERVER Poseidon
       services.AddDbContext<PoseidonContext>(options =>
@@ -55,6 +60,7 @@ namespace POSEIDON
       app.UseSwaggerUI(c =>
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api Caduca REST");
+        c.RoutePrefix = string.Empty;
       });
 
       app.UseHttpsRedirection();

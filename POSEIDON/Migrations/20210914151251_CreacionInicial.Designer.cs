@@ -9,8 +9,8 @@ using POSEIDON.Models;
 namespace POSEIDON.Migrations
 {
     [DbContext(typeof(PoseidonContext))]
-    [Migration("20210906233407_CreationUsers")]
-    partial class CreationUsers
+    [Migration("20210914151251_CreacionInicial")]
+    partial class CreacionInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,9 @@ namespace POSEIDON.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("role")
+                        .HasColumnType("int");
 
                     b.HasKey("Account");
 

@@ -40,5 +40,8 @@ namespace POSEIDON.Models
     [Required]
     [StringLength(6)]
     public string InternalPhone { get; set; }
+    
+    [Required]
+    public Role role { get; set; }
   }
 }

@@ -57,6 +57,9 @@ namespace POSEIDON.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("role")
+                        .HasColumnType("int");
+
                     b.HasKey("Account");
 
                     b.ToTable("USER");

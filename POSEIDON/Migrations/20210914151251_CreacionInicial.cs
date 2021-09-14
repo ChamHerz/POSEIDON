@@ -2,7 +2,7 @@
 
 namespace POSEIDON.Migrations
 {
-    public partial class CreationUsers : Migration
+    public partial class CreacionInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,8 @@ namespace POSEIDON.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Authorized = table.Column<bool>(type: "bit", nullable: false),
                     Charge = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    InternalPhone = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
+                    InternalPhone = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
+                    role = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

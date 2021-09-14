@@ -11,7 +11,17 @@ namespace POSEIDON.Models
     public PoseidonContext(DbContextOptions<PoseidonContext> options) : base(options)
     {
     }
-
     public virtual DbSet<User> Users { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      modelBuilder.Entity<User>().ToTable("USER");
+
+      modelBuilder.Entity<User>()
+                .Property(c => c.role)
+                .HasConversion<int>();
+
+      base.OnModelCreating(modelBuilder);
+    }
   }
 }
