@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using POSEIDON.Models;
 
 namespace POSEIDON.Migrations
 {
     [DbContext(typeof(PoseidonContext))]
-    partial class PoseidonContextModelSnapshot : ModelSnapshot
+    [Migration("20210914164326_Seguridad")]
+    partial class Seguridad
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
