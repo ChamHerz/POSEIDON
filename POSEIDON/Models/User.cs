@@ -11,6 +11,9 @@ namespace POSEIDON.Models
   public class User
   {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
+
     [StringLength(50)]
     public string Account { get; set; }
 
@@ -24,6 +27,9 @@ namespace POSEIDON.Models
 
     [Required]
     public bool Active { get; set; }
+
+    [Required]
+    public string Aditional { get; set; }
 
     [Required]
     [StringLength(4)]

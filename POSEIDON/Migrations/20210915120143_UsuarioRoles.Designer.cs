@@ -10,8 +10,8 @@ using POSEIDON.Models;
 namespace POSEIDON.Migrations
 {
     [DbContext(typeof(PoseidonContext))]
-    [Migration("20210914164326_Seguridad")]
-    partial class Seguridad
+    [Migration("20210915120143_UsuarioRoles")]
+    partial class UsuarioRoles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,9 +44,6 @@ namespace POSEIDON.Migrations
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserAccount")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<int?>("UserId")
                         .IsRequired()
                         .HasColumnType("int");
@@ -55,8 +52,6 @@ namespace POSEIDON.Migrations
 
                     b.HasIndex("TableId")
                         .HasDatabaseName("IX_HistoryTable");
-
-                    b.HasIndex("UserAccount");
 
                     b.HasIndex("UserId")
                         .HasDatabaseName("IX_ctrUser");
@@ -128,12 +123,21 @@ namespace POSEIDON.Migrations
 
             modelBuilder.Entity("POSEIDON.Models.User", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<string>("Account")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Aditional")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Authorized")
                         .HasColumnType("bit");
@@ -178,13 +182,63 @@ namespace POSEIDON.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("Account");
+                    b.HasKey("Id");
 
                     b.HasIndex("Key")
                         .IsUnique()
                         .HasDatabaseName("UI_KeyUser");
 
                     b.ToTable("USER");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Account = "ARMADA\\DIAP197",
+                            Active = true,
+                            Aditional = "74-52-ce-27-66-ca-0a-7c-51-00-8d-7b-e1-78-d0-ae",
+                            Authorized = true,
+                            Charge = "PROGRAMADOR",
+                            Degree = "CP",
+                            Destine = "DIAP",
+                            FirstName = "DENIS ADRIEL",
+                            InternalPhone = "122462",
+                            Key = "CHAMBI",
+                            LastName = "CHAMBI",
+                            Password = "f7-aa-92-99-41-1e-42-6b-06-6b-60-00-17-bb-b3-7d-60-2b-37-d0-91-4d-db-0c-11-70-13-12-59-64-96-88"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Account = "ARMADA\\DIAP204",
+                            Active = true,
+                            Aditional = "cf-17-d4-ee-b2-23-b3-d6-43-aa-4e-d2-e8-53-f4-cf",
+                            Authorized = true,
+                            Charge = "ENCARGADO SEGUIMIENTO PROFESIONAL",
+                            Degree = "SM",
+                            Destine = "DIAP",
+                            FirstName = "JOSE",
+                            InternalPhone = "122462",
+                            Key = "SALINAS",
+                            LastName = "SALINAS",
+                            Password = "9a-ff-21-83-28-cd-22-6c-27-4b-2d-dd-6c-c9-85-29-9a-e0-64-08-e3-7e-af-a2-91-bf-fb-89-72-b4-7c-ac"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Account = "ARMADA\\DIAP233",
+                            Active = true,
+                            Aditional = "d3-7a-d4-f5-f3-a4-f5-a0-8f-43-54-41-83-9b-b3-a2",
+                            Authorized = true,
+                            Charge = "AUXILIAR SEGUIMIENTO PROFESIONAL",
+                            Degree = "CP",
+                            Destine = "DIAP",
+                            FirstName = "MARIO",
+                            InternalPhone = "122462",
+                            Key = "TOLABA",
+                            LastName = "TOLABA",
+                            Password = "20-2d-f1-5b-03-76-7d-41-93-86-be-89-63-22-49-ae-9a-49-19-3c-4e-e0-7a-71-9a-3a-a1-15-a3-e7-2c-49"
+                        });
                 });
 
             modelBuilder.Entity("POSEIDON.Models.UserAccess", b =>
@@ -236,9 +290,6 @@ namespace POSEIDON.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("UserAccount")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -247,8 +298,6 @@ namespace POSEIDON.Migrations
                     b.HasIndex("RefreshToken")
                         .IsUnique()
                         .HasDatabaseName("UI_RefreshToken");
-
-                    b.HasIndex("UserAccount");
 
                     b.HasIndex("UserId", "Token")
                         .IsUnique()
@@ -267,9 +316,6 @@ namespace POSEIDON.Migrations
                     b.Property<int>("RolId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserAccount")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -277,13 +323,31 @@ namespace POSEIDON.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.HasIndex("UserAccount");
-
                     b.HasIndex("UserId", "RolId")
                         .IsUnique()
                         .HasDatabaseName("UI_UsuarioRol");
 
                     b.ToTable("USER_ROL");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RolId = 3,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RolId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            RolId = 1,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("POSEIDON.Models.History", b =>
@@ -296,16 +360,18 @@ namespace POSEIDON.Migrations
 
                     b.HasOne("POSEIDON.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("UserAccount")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("POSEIDON.Models.UserAccess", b =>
                 {
                     b.HasOne("POSEIDON.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("UserAccount")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("POSEIDON.Models.UserRol", b =>
@@ -318,8 +384,9 @@ namespace POSEIDON.Migrations
 
                     b.HasOne("POSEIDON.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("UserAccount")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
