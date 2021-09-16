@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using POSEIDON.DAO;
+using POSEIDON.DTO;
 using POSEIDON.Models;
 
 namespace POSEIDON.Controllers
@@ -14,10 +18,29 @@ namespace POSEIDON.Controllers
     public class UsersController : ControllerBase
     {
         private readonly PoseidonContext _context;
+        private UserDAO _userDAO;
 
-        public UsersController(PoseidonContext context)
+        /// <summary>
+        /// Archivo de configuración
+        /// </summary>
+        protected readonly IConfiguration _config;
+
+        public UsersController(PoseidonContext context,
+                               IConfiguration config)
         {
             _context = context;
+            _config = config;
+            _userDAO = new UserDAO(context);
+        }
+
+        [HttpPost("Login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> PostAsync([FromBody] LoginDTO loginDTO)
+        {
+          var token = await _userDAO.LoginAsync(loginDTO, _config);
+          if (string.IsNullOrEmpty(token.Token))
+            return StatusCode(_userDAO.customError.StatusCode, _userDAO.customError.Message);
+          return Ok(token);
         }
 
         // GET: api/Users

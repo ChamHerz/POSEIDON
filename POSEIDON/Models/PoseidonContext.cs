@@ -28,18 +28,18 @@ namespace POSEIDON.Models
 
       //#region Inserts User
       Security security = new Security();
-      string salt1 = "74-52-ce-27-66-ca-0a-7c-51-00-8d-7b-e1-78-d0-ae";
-      string salt2 = "cf-17-d4-ee-b2-23-b3-d6-43-aa-4e-d2-e8-53-f4-cf";
-      string salt3 = "d3-7a-d4-f5-f3-a4-f5-a0-8f-43-54-41-83-9b-b3-a2";
+      string salt1 = security.GetSalt();
+      string salt2 = security.GetSalt();
+      string salt3 = security.GetSalt();
       modelBuilder.Entity<User>().HasData(
         new User
         {
           Id = 1,
           Account = "ARMADA\\DIAP197",
           Key = "CHAMBI",
-          Password = "f7-aa-92-99-41-1e-42-6b-06-6b-60-00-17-bb-b3-7d-60-2b-37-d0-91-4d-db-0c-11-70-13-12-59-64-96-88",
+          Password = "34-9f-f4-38-5b-c9-40-56-d0-50-80-75-bb-38-e1-8b-ed-27-6d-0b-8d-34-65-38-bf-63-c9-57-9d-de-16-87",
           Active = true,
-          Aditional = salt1,
+          Aditional = "42-04-b1-c7-9a-3f-9c-48-9c-ef-75-04-5a-d0-55-10",
           Destine = "DIAP",
           Degree = "CP",
           LastName = "CHAMBI",
@@ -53,9 +53,9 @@ namespace POSEIDON.Models
           Id = 2,
           Account = "ARMADA\\DIAP204",
           Key = "SALINAS",
-          Password = "9a-ff-21-83-28-cd-22-6c-27-4b-2d-dd-6c-c9-85-29-9a-e0-64-08-e3-7e-af-a2-91-bf-fb-89-72-b4-7c-ac",
+          Password = "5c-73-4d-21-f1-d2-c8-d1-50-50-0b-e3-3a-d8-38-e3-12-b0-1d-d4-3f-4a-45-27-e6-85-13-d8-68-d6-b7-24",
           Active = true,
-          Aditional = salt2,
+          Aditional = "25-ff-57-7d-1d-c4-ba-ca-d2-ac-8d-d5-a5-a0-2a-d3",
           Destine = "DIAP",
           Degree = "SM",
           LastName = "SALINAS",
@@ -69,9 +69,9 @@ namespace POSEIDON.Models
           Id = 3,
           Account = "ARMADA\\DIAP233",
           Key = "TOLABA",
-          Password = "20-2d-f1-5b-03-76-7d-41-93-86-be-89-63-22-49-ae-9a-49-19-3c-4e-e0-7a-71-9a-3a-a1-15-a3-e7-2c-49",
+          Password = "5c-73-4d-21-f1-d2-c8-d1-50-50-0b-e3-3a-d8-38-e3-12-b0-1d-d4-3f-4a-45-27-e6-85-13-d8-68-d6-b7-24",
           Active = true,
-          Aditional = salt3,
+          Aditional = "65-d1-9a-4a-7a-0e-c7-aa-54-75-55-ec-cd-a0-dd-cf",
           Destine = "DIAP",
           Degree = "CP",
           LastName = "TOLABA",
@@ -109,6 +109,8 @@ namespace POSEIDON.Models
     public virtual DbSet<User> User { get; set; }
     public virtual DbSet<UserAccess> UserAccess { get; set; }
     public virtual DbSet<UserRol> UserRol { get; set; }
+
+    public virtual DbSet<Rol> Rol { get; set; }
 
     //ESTO PARA pasar los enum
     /*protected override void OnModelCreating(ModelBuilder modelBuilder)
