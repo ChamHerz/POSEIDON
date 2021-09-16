@@ -45,27 +45,26 @@ namespace POSEIDON
               ("SQLServerConnection")));
 
       //Seguridad
-      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(cfg =>
-        {
-          cfg.Audience = Configuration["Tokens:Issuer"];
-          cfg.Authority = Configuration["Token:Audience"];
-          cfg.TokenValidationParameters = new TokenValidationParameters()
-          {
-            //Se va a validar el issuer (Quien genera el token)
-            ValidIssuer = Configuration["Tokens:Issuer"],
-            ValidateAudience = true,
-            //Se va a validar la audiencia que puede usar el token
-            ValidAudience = Configuration["Tokens:Audience"],
-            //Se valida la llave de cifrado
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(
-                           Encoding.UTF8.GetBytes(
-                                       Configuration["Tokens:Key"])),
-            //Se validara el tiempo de vida del token
-            ValidateLifetime = true
-          };
-        });
+      services.AddAuthentication(o => {
+        o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      })
+                    .AddJwtBearer(cfg =>
+                    {
+                      cfg.Audience = Configuration["Tokens:Audience"];
+                      cfg.ClaimsIssuer = Configuration["Tokens:Issuer"];
+                      cfg.TokenValidationParameters = new TokenValidationParameters()
+                      {
+                        ValidIssuer = Configuration["Tokens:Issuer"],
+                        ValidateAudience = true,
+                        ValidAudience = Configuration["Tokens:Audience"],
+                        //Se valida la llave de cifrado
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
+                        //Se validara el tiempo de vida del token
+                        ValidateLifetime = true
+                      };
+                    });
 
       //Configuro swagger
       services.AddSwaggerGen(c =>

@@ -194,7 +194,7 @@ namespace POSEIDON.Migrations
                             Id = 1,
                             Account = "ARMADA\\DIAP197",
                             Active = true,
-                            Aditional = "42-04-b1-c7-9a-3f-9c-48-9c-ef-75-04-5a-d0-55-10",
+                            Aditional = "39-6d-19-5b-cf-1e-33-2a-3f-e0-48-31-50-5a-5d-1b",
                             Authorized = true,
                             Charge = "PROGRAMADOR",
                             Degree = "CP",
@@ -203,14 +203,14 @@ namespace POSEIDON.Migrations
                             InternalPhone = "122462",
                             Key = "CHAMBI",
                             LastName = "CHAMBI",
-                            Password = "34-9f-f4-38-5b-c9-40-56-d0-50-80-75-bb-38-e1-8b-ed-27-6d-0b-8d-34-65-38-bf-63-c9-57-9d-de-16-87"
+                            Password = "cd-37-be-e4-56-fe-d5-89-9a-0f-65-eb-47-73-34-f2-5e-e4-67-9f-d8-8d-16-a4-0a-f4-7a-57-6f-0e-c9-8e"
                         },
                         new
                         {
                             Id = 2,
                             Account = "ARMADA\\DIAP204",
                             Active = true,
-                            Aditional = "25-ff-57-7d-1d-c4-ba-ca-d2-ac-8d-d5-a5-a0-2a-d3",
+                            Aditional = "11-57-83-0e-a6-10-e2-44-e4-a9-1b-c0-d8-21-95-0b",
                             Authorized = true,
                             Charge = "ENCARGADO SEGUIMIENTO PROFESIONAL",
                             Degree = "SM",
@@ -219,14 +219,14 @@ namespace POSEIDON.Migrations
                             InternalPhone = "122462",
                             Key = "SALINAS",
                             LastName = "SALINAS",
-                            Password = "5c-73-4d-21-f1-d2-c8-d1-50-50-0b-e3-3a-d8-38-e3-12-b0-1d-d4-3f-4a-45-27-e6-85-13-d8-68-d6-b7-24"
+                            Password = "0e-f4-91-d2-58-c3-84-a7-2c-dc-d0-e0-b5-7c-9e-3a-27-87-b6-e0-41-fa-b4-cd-b9-e6-6f-75-a9-5b-6d-20"
                         },
                         new
                         {
                             Id = 3,
                             Account = "ARMADA\\DIAP233",
                             Active = true,
-                            Aditional = "65-d1-9a-4a-7a-0e-c7-aa-54-75-55-ec-cd-a0-dd-cf",
+                            Aditional = "2f-86-19-d7-df-a4-06-3e-59-66-92-a9-bc-df-97-b5",
                             Authorized = true,
                             Charge = "AUXILIAR SEGUIMIENTO PROFESIONAL",
                             Degree = "CP",
@@ -235,7 +235,7 @@ namespace POSEIDON.Migrations
                             InternalPhone = "122462",
                             Key = "TOLABA",
                             LastName = "TOLABA",
-                            Password = "5c-73-4d-21-f1-d2-c8-d1-50-50-0b-e3-3a-d8-38-e3-12-b0-1d-d4-3f-4a-45-27-e6-85-13-d8-68-d6-b7-24"
+                            Password = "81-f4-7a-9d-db-85-88-83-de-3f-a7-26-f1-91-06-40-2f-0c-e0-29-3d-11-01-67-77-bd-77-0f-a0-9b-6d-0a"
                         });
                 });
 
