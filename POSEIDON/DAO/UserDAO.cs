@@ -69,7 +69,7 @@ namespace POSEIDON.DAO
       tokenDTO.Token = token.GenerateToken(claims.ToArray(), dateExpiration);
       tokenDTO.TokenExpiration = dateExpiration;
       tokenDTO.UserId = user.Id;
-      tokenDTO.Name = String.Format("{s1} {s2}", user.FirstName, user.LastName);
+      tokenDTO.Name = String.Format("{0} {1}", user.FirstName, user.LastName);
       tokenDTO.RefreshToken = token.RefreshToken();
       return tokenDTO;
     }

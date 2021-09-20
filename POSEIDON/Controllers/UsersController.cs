@@ -45,6 +45,7 @@ namespace POSEIDON.Controllers
 
         // GET: api/Users
         [HttpGet]
+        [Authorize(Roles = "ROOT, ADMIN")]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
             return await _context.User.ToListAsync();

@@ -33,6 +33,8 @@ namespace POSEIDON
 
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddCors();
+
       services.AddControllers().AddJsonOptions(opt =>
       {
         //Para convertir el String del request en Integner (Enum)
@@ -65,6 +67,9 @@ namespace POSEIDON
                         ValidateLifetime = true
                       };
                     });
+
+      //Habilitar CORS
+      services.AddCors();
 
       //Configuro swagger
       services.AddSwaggerGen(c =>
@@ -116,6 +121,12 @@ namespace POSEIDON
       {
         app.UseDeveloperExceptionPage();
       }
+      //Habilitar CORS
+      var urlAcepted = Configuration.GetSection("AllowedHosts").Value.Split(",");
+      app.UseCors(builder =>
+        builder.WithOrigins(urlAcepted)
+                     .AllowAnyHeader()
+                     .AllowAnyMethod());
 
       //Habilitar swagger
       app.UseSwagger();
